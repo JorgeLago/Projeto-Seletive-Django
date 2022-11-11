@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block 'head' %}
+    <link href="{% static 'empresa/css/empresas.css' %}" rel="stylesheet">
+{% endblock%}
+
 {% block 'body' %}
     <div class="wrapper">
         <div class="box"> 
@@ -45,22 +51,23 @@
                         <th>Ação</th>
                     </tr>
 
-                    
-                        <tr class="tabela-linha" >
-                            <td>Nome da empresa</td>
-                            <td>Endereço da empresa</td>
-                            <td>
-                                <select class="form-select">       
-                                    <option></option>                    
-                                </select>
-                            </td>
-                            <td>
-                                Quantidade de vagas
-                            </td>
-                            <td>
-                                <a class="btn-excluir">Excluir empresa</a>
-                            </td>
-                        </tr>
+                    {% for empresa in empresas%}
+                    <tr class="tabela-linha">
+                        <td>{{empresa.nome}}</td>
+                        <td>{{empresa.endereco}}</td>
+                        <td>
+                            <select class="form-select">                                    
+                                <option></option>                        
+                            </select>
+                        </td>
+                        <td>
+                            Quantidade de vagas
+                        </td>
+                        <td>
+                            <a class="btn-excluir">Excluir empresa</a>
+                        </td>
+                    </tr>
+                {% endfor %}
                     
                 </table>
             </div>

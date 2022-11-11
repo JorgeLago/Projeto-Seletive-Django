@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from .models import Tecnologias, Empresa
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.contrib import constants
+from django.contrib.messages import constants
+
 
 
 def nova_empresa(request):
@@ -45,5 +46,7 @@ def nova_empresa(request):
         messages.add_message(request, constants.SUCCESS, 'Empresa cadastrada com sucesso')
         return redirect('/home/empresas')
 
-def empresa(request):
-    return render(request, 'empresa.html')
+def empresas(request):
+    empresas = Empresa.objects.all()
+    tecnologias = Tecnologias.objects.all()
+    return render(request, 'empresa.html', {'empresas': empresas, 'tecnologias': tecnologias})
