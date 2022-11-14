@@ -53,11 +53,13 @@
 
                     {% for empresa in empresas%}
                     <tr class="tabela-linha">
-                        <td>{{empresa.nome}}</td>
+                        <td>{{empresa.nome}} | {{forloop.counter}}</td>
                         <td>{{empresa.endereco}}</td>
                         <td>
-                            <select class="form-select">                                    
-                                <option></option>                        
+                            <select class="form-select"> 
+                                {% for tech in empresa.tecnologias.all %}                                   
+                                    <option>{{tech}}</option>  
+                                {% endfor %}                      
                             </select>
                         </td>
                         <td>
